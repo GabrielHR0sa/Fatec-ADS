@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 7</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script type="text/javascript">
+
+        function inserir(tarefa) {
+
+           var listaTarefa = [];
+           var valor = document.getElementById('btnInserir');
+           listaTarefa.push(valor);
+
+            var auxHtml = '';
+            for (let i = 0; i < listaTarefa.length; i++) {
+                auxHtml +=  listaTarefa[i];
+            }
+        }
+
+
+
+        window.onload = function () {
+            document.getElementById('btnInserir').onclick = function () {
+                let tarefa = inserir();
+                let resultado = '';
+                document.getElementById('resultado').innerHTML = 'Resultado: ' + tarefa;
+            }
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <h1>Tarefas</h1>
+    </header>
+    <main class="principal">
+
+
+        <input type="text" id="tarefa" placeholder="Inserir tarefa"><br><br>
+        <button class="button" id="btnInserir" value="inserir">Inserir</button>
+        <p id="resultado" class="result">Resultado: </p>
+
+    </main>
+
+</body>
+
+</html>

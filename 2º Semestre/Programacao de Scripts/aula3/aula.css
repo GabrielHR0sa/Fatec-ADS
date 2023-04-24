@@ -1,0 +1,53 @@
+*{
+    text-align: center;
+}
+
+h1{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 50px;
+    color: black;
+}
+
+h2{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(184, 184, 184);
+}
+
+.list{
+    
+    list-style: none;
+    padding: 5px;
+    
+}
+
+.table{
+    border: 2px solid black;
+    padding: 3px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.table, th{
+    padding: 20px;
+}
+
+.imagem{
+    margin: 10px;
+    
+}
+
+a{
+
+    text-decoration: none;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: black;
+    margin: 20px;
+    transition: 0.2s;
+}   
+
+a:hover{
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    border-left: solid 2px yellow;
+    padding: 5px;
+}

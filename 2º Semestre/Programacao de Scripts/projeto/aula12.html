@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 12</title>
+    <link rel="stylesheet" href="bootstrap5/css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="jquery-3.6.1.min.js"></script>
+    <script type="text/javascript">
+        class Produto {
+            constructor(nomeJogo, desenvolvedor, tipo, plataforma, ano) {
+                this.nomeJogo = nomeJogo;
+                this.desenvolvedor = desenvolvedor;
+                this.tipo = tipo;
+                this.plataforma = plataforma;
+                this.ano = ano;
+            }
+        }
+
+        //produto1 = new Produto('God of War','sony','rpg','Playstation','9/11/2022');
+        //produto2 = new Produto('Rainbow six siege','ubisoft','fps','xbox','10/10/2016');
+
+        listaProdutos = [];
+        posicao = '';
+
+        function listar(lista) {
+            let auxHtml = '';
+            for (let i = 0; i < lista.length; i++) {
+                auxHtml += '<tr>' +
+                    '<td>' + lista[i].nomeJogo + '</td>' +
+                    '<td>' + lista[i].desenvolvedor + '</td>' +
+                    '<td>' + lista[i].tipo + '</td>' +
+                    '<td>' + lista[i].plataforma + '</td>' +
+                    '<td>' + lista[i].ano + '</td>' +
+                    '<td>' +
+                    '<a href="#" class="btn btn-warning btAlterar" rel="' + i + '">' +
+                    'Alterar' +
+                    '</a>' +
+                    '</td>' +
+                    '<td>' +
+                    '<a href="#" class="btn btn-danger btExcluir" rel="' + i + '">' +
+                    'Excluir' +
+                    '</a>' +
+                    '</td>'
+                '</tr>';
+            }
+            return auxHtml;
+        }
+
+        $(document).ready(() => {        //arrow function
+            $('#btSalvar').click(() => {
+                let nomeJogo = $('#nomeJogo').val();
+                let desenvolvedor = $('#desenvolvedor').val();
+                let tipo = $('#tipo').val();
+                let plataforma = $('#plataforma').val();
+                let ano = $('#ano').val();
+
+                if (nomeJogo != '' && desenvolvedor != '' && tipo != '' && plataforma != '' && ano != '') {
+                    produto = new Produto(nomeJogo, desenvolvedor, tipo, plataforma, ano);
+
+                    //----------------------------------------------------------------------------------------
+                    // opção para salvar caso esteja preenchendo, e salvar a alteração caso não seja novo cadastro
+                    if (posicao == '') {
+                        listaProdutos.push(produto);
+                    } else {
+                        listaProdutos[posicao] = produto;
+                        posicao = '';
+                    }
+
+                    $('#tabela').html(listar(listaProdutos));
+                    $('input').val('');
+                } else {
+                    alert('Informe Todos os dados!!!');
+                }
+            });
+
+            //--------------------------------------------------------------------------------------------------------
+            // alteração cada item por linha
+            $('#tabela').on('click', '.btAlterar', function () {
+                posicao = $(this).attr('rel');
+                $('#nomeJogo').val(listaProdutos[posicao].nomeJogo);
+                $('#desenvolvedor').val(listaProdutos[posicao].desenvolvedor);
+                $('#tipo').val(listaProdutos[posicao].tipo);
+                $('#plataforma').val(listaProdutos[posicao].plataforma);
+                $('#ano').val(listaProdutos[posicao].ano);
+            });
+
+            //---------------------------------------------------------------------------------------------------------
+            // exclusão da linha
+
+            $('#tabela').on('click', '.btExcluir', function () {
+                if (confirm('Tem certeza que deseja excluir?')) {
+                    let pos = $(this).attr('rel');
+                    listaProdutos.splice(pos, 1);
+                    $('#tabela').html(listar(listaProdutos));
+
+                }
+            });
+
+        });
+
+    </script>
+
+</head>
+
+<body>
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom barra">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+          <img src="joy.png" class="joy">
+          <span class="fs-4  item"> Cadastro de Jogos</span>
+        </a>
+  
+        <ul class="nav nav-pills">
+          <li class="nav-item"><a href="#" class="nav-link item">Inicio</a></li>
+          <li class="nav-item"><a href="#" class="nav-link item">Contato</a></li>
+          <li class="nav-item"><a href="#" class="nav-link item">Jogos</a></li>
+          <li class="nav-item"><a href="#" class="nav-link item">Sobre</a></li>
+        </ul>
+      </header>
+
+    <main class="container">
+
+        <div class=" menu">
+            <div class="card dados" style="border: 1px solid rgb(0, 0, 54);">
+                <div class="card-header py-3 text-white"
+                    style="background-color:rgb(0, 0, 54); border: 1px solid rgb(0, 0, 54);">
+                    <h4 class="my-0 fw-normal">Dados</h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3 mt-3">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Nome Do Jogo</span>
+                            <input type="text" class="form-control" id="nomeJogo">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Desenvolvedor</span>
+                            <input type="text" class="form-control" id="desenvolvedor">
+                        </div>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Tipo</span>
+                            <input type="text" class="form-control" id="tipo">
+
+                        </div>
+                    </div>
+
+                    <div class="mb-3 mt-3">
+                        <div class="input-group mb-3">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Plataforma</span>
+                                <input type="text" class="form-control" id="plataforma">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 mt-3">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Ano Lançamento</span>
+                            <input type="text" class="form-control" id="ano">
+                        </div>
+                    </div>
+
+                    <button id="btSalvar" type="button" class="w-100 btn btn-lg bton">Salvar</button>
+                </div>
+            </div>
+            <div class="lista">
+                <div class="card">
+                    <div class="card-header py-3"
+                        style="background-color:rgb(0, 0, 54); border: 1px solid rgb(0, 0, 54); color: #fff;">
+                        <h4 class="my-0 fw-normal">Listagem</h4>
+                    </div>
+
+                    <div class="card-body"
+                        style="background-color:rgb(255, 255, 255); border: 1px solid rgb(0, 0, 54); color: #fff;">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nome Jogo</th>
+                                    <th scope="col">Desenvolvedor</th>
+                                    <th scope="col">Tipo</th>
+                                    <th scope="col">Plataforma</th>
+                                    <th scope="col">Ano Lançamento</th>
+                                    <th scope="col">Alterar</th>
+                                    <th scope="col">Excluir</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabela"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+    <footer class="mt-5 rodape">  
+        <div class="conteudo_final">
+            <h3>Projeto Programação de Scripts</h3>
+            <p> Cadastro de Jogos - Listagem de Jogos</p>  
+            <p> Gabriel Henrique Rosa</p>  
+            <p>Fatec - 2022</p>  
+              
+        </div>
+            
+    </footer>
+</body>
+
+</html>

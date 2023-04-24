@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 3</title>
+</head>
+
+<body>
+
+    <script>
+
+        operação = prompt("Escolha a operação: 1- Adição, 2- Subtração, 3- Multiplicação, 4- divisão");
+
+        if ((operação == 1) || (operação == 2) || (operação == 3) || (operação == 4)) {
+            numero1 = prompt("Digite o primeiro valor");
+            numero2 = prompt("Digite o segundo valor");
+        }else {
+            alert("nenhuma opção selecionada");
+        }
+
+        numero1 = parseInt(numero1);
+        numero2 = parseInt(numero2);
+
+        if (operação == 1) {
+            alert("Resultado da adição: " + (numero1 + numero2));
+        } else if (operação == 2) {
+            alert("Resultado da Subtração: " + (numero1 - numero2));
+        } else if (operação == 3) {
+            alert("Resultado da multiplicação: " + (numero1 * numero2));
+        } else if (operação == 4) {
+            alert("Resultado da divisão: " + (numero1 / numero2));
+        } 
+
+
+    </script>
+
+</body>
+
+</html>

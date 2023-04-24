@@ -1,0 +1,74 @@
+#include<stdio.h>
+
+int main(){
+    
+int n, tipoPulverizacao, i, numero;
+float area, soma, desconto, vlacima, descontovl, total, um, dois, tres, totalf;
+
+    printf("Digite o numero de fazendeiros: ");
+    scanf("%d",& n);
+    
+  
+    i = 0;
+    while(i < n){
+        
+        printf("\n ------------------------------------------------");
+        printf("\n Entre com os dados do fazendeiro n %d", i+1);
+        printf("\n Digite o numero do fazendeiro: ");
+        scanf("%d",& numero);
+        printf("\n Tipo de Pulverização:");
+        printf("\n [1] Contra erva daninha.");
+        printf("\n [2] Contra gafanhotos.");
+        printf("\n [3] Contra broca.");
+        printf("\n [4] Contra tudo acima.");
+        printf("\n Escolha o tipo de Pulverização: ");
+        scanf("%d",& tipoPulverizacao);
+        printf("\n Digite a area a ser pulverizada: ");
+        scanf("%f",& area);
+        
+        
+        soma = 0; desconto = 0; vlacima = 0; descontovl = 0; total = 0;
+        
+        if(tipoPulverizacao == 1){
+            soma = area*700;
+        }
+        if(tipoPulverizacao == 2){
+            soma = area*1200;
+        }
+        if(tipoPulverizacao == 3){
+            soma = area*1600;
+        }
+        if(tipoPulverizacao == 4){
+            soma = area*2300;
+        }
+        
+        if((area > 300)&&(soma > 300000)){
+            um = soma - (soma*0.075);
+            dois = um - 300000;
+            tres = dois - (dois*0.13);
+            totalf = tres + 300000;
+            printf("\n Custo total = R$ %2.f", totalf);
+            
+        }else if(area > 300){
+            desconto = soma - (soma*0.075);
+            printf("\n Custo total = R$ %2.f", desconto);
+            
+        }else if(soma > 300000){
+            vlacima = soma - 300000;
+            descontovl = vlacima - (vlacima*0.13);
+            total = descontovl + 300000;
+            printf("\n Custo total = R$ %2.f", total);
+        }else{
+            printf("\n Custo total = R$ %2.f", soma);
+        }
+        
+        
+       
+        
+        
+        i++;
+    }
+    
+    
+    return 0;
+}

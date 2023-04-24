@@ -1,0 +1,30 @@
+#include<stdio.h>
+
+int main(){
+    
+int i, n, a, b, c, d;
+float sinal, s;
+
+    printf("\n Entre com o numero de termos: ");
+    scanf("%d",& n);
+    
+    i = 1; sinal = 1.0; a = 1;b = 20; c = 2; s = 0;
+    
+    while(i <= n){
+        
+        s = s + sinal * a/b;
+        a = (c*c*c*c);
+        b = a+b;
+        
+        if(i % 3 == 0){
+            sinal = -sinal;
+        }
+        
+        c = c++;
+        
+        i++;
+    }
+    
+    printf("A soma dos %d elementos eh: %2f", n,s);
+    return 0;
+}

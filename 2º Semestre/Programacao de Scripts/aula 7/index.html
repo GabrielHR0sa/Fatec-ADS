@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 7</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script type="text/javascript">
+
+
+        function adicionar(numero1, numero2) {
+            return numero1 + numero2;
+        }
+
+        function subtrair(numero1, numero2) {
+            return numero1 - numero2;
+        }
+
+        function multiplicar(numero1, numero2) {
+            return numero1 * numero2;
+        }
+
+        function dividir(numero1, numero2) {
+            if (numero2 > 0) {
+                return numero1 / numero2;
+            }
+        }
+
+        window.onload = function () {
+            document.getElementById('btnCalcular').onclick = function () {
+                let valor1 = document.getElementById('valor1').value;
+                let valor2 = document.getElementById('valor2').value;
+                let operacao = document.getElementById('operacao').value;
+
+                if (isNaN(valor1) || isNaN(valor2) || valor1 == '' || valor2 == '') {
+                    alert("Informe um número.");
+                } else {    //coverter os valores para float
+                    valor1 = parseFloat(valor1);
+                    valor2 = parseFloat(valor2);
+                    let resultado = '';
+                    switch (operacao) {
+                        case '+':
+                            resultado = adicionar(valor1, valor2);
+                            break;
+
+                        case '-':
+                            resultado = subtrair(valor1, valor2);
+                            break;
+
+                        case '*':
+                            resultado = multiplicar(valor1, valor2);
+                            break;
+
+                        case '/':
+                            resultado = dividir(valor1, valor2);
+                            break;
+                        default:
+                            resultado = 'Operação inválida';
+                    }
+
+                    document.getElementById('resultado').innerHTML = 'Resultado: ' + resultado;
+
+                }
+            }
+
+        }
+
+
+
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <h1>Aplicação de Cálculo</h1>
+    </header>
+    <main class="principal">
+        <!--
+        <form method="GET" action="pagina_no_servidor.php">
+
+            <input type="text" placeholder="Valor 1"><br><br>
+            <input type="number" placeholder="number"><br><br>
+            <input type="date" placeholder="Data"><br><br>
+            <input type="email" placeholder="Email"><br><br>
+            <input type="submit" value="Enviar" class="button"><br><br>
+
+        </form>
+        -->
+
+        <input type="number" id="valor1" placeholder="Valor 1"><br><br>
+        <input type="number" id="valor2" placeholder="Valor 2"><br><br>
+        <select id="operacao">
+
+            <option value="+">Adição</option>
+            <option value="-">Subtração</option>
+            <option value="*">Multiplicação</option>
+            <option value="/">Divisão</option>
+
+        </select><br>
+
+        <button class="button" id="btnCalcular">Calcular</button>
+
+        <p id="resultado" class="result">Resultado: </p>
+
+    </main>
+    <footer>
+
+        <hr>
+        <p>Criado em 27/09/2022</p>
+
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,283 @@
+#include<stdio.h>
+
+int main(){
+    
+int numero, n, i;
+float salario, total_peca, a, b, c, pagamento, folha_pg, media, qtf, qtm, pecas, pct_peca;
+char sexo;
+    
+    printf("\n Entre com o numero de funcionarios: ");
+    scanf("%d",& n);
+    
+    i = 0;
+    salario = 1215;
+    pagamento = 0;
+    folha_pg = 0;
+    media = 0;
+    qtm = 0;
+    qtf = 0;
+    pecas = 0;
+    pct_peca = 0;
+   
+    
+    while(i < n){
+        
+        printf("\n --------------------------------------------------");
+        printf("\n Digite as informacoes do %d funcionario:  ", i + 1);
+        printf("\n Numero: ");
+        scanf("%d",& numero);
+        printf("\n Total de Pecas produzidas: ");
+        scanf("%f",& total_peca);
+        printf("\n M - Masculino / F - Feminino");
+        printf("\n Sexo: ");
+        scanf("%c%*c",& sexo);
+       
+//----------------a) salario de cada operário---------------------------- 
+        if(total_peca <= 50){
+            if(total_peca <= 30){
+                a = salario;
+                pagamento = a;
+                printf("\n Salario: %f", pagamento);
+            }else{
+                a = salario + ((salario/100*3) * (total_peca - 30));
+                pagamento = a;
+                printf("\n Salario: %f", pagamento);
+            }
+        }else if((total_peca >= 51) || (total_peca <= 60)){
+            if(total_peca < 53){
+                b = salario * 2;
+                pagamento = b;
+                printf("\n Salario: %f", pagamento);
+            }else{
+                b = (salario * 2) + ((salario/100*4) * (total_peca - 52));
+                pagamento = b;
+                printf("\n Salario: %f", pagamento);
+            }
+        }else{
+            if(total_peca <= 64){
+                c = salario * 3;
+                pagamento = c;
+                printf("\n Salario: %f", pagamento);
+            }else{
+                c = (salario * 3) + ((salario/100*2) * (total_peca - 64));
+                pagamento = c;
+                printf("\n Salario: %f", pagamento);
+            }
+        }
+        
+    //--------b)O total da folha de pagamento----------------------------
+    
+        folha_pg = folha_pg + pagamento;
+  
+  //----------c)Media de Peças fabricadas por homens classe B------------
+  
+  
+        if((sexo == 'm')||(sexo == 'M')){
+            qtm++;
+        }else{
+            qtf++;
+        }
+ 
+        if((total_peca >= 51) || (total_peca <= 60)){
+        
+            pecas = pecas + total_peca;
+            media = pecas/ qtm;
+        }
+        
+//-----------d) Porcentagem de peças fabricadas na classe A pelas mulheres--
+
+        if(total_peca <= 50){
+            if((sexo == 'F')||(sexo == 'f')){
+                pct_peca = (100 * qtf) / n;
+            }
+                
+        }
+        
+        i++;
+    }
+    
+    printf("\n Total da Folha de Pagamento: %f ", folha_pg);
+    printf("\n Media de Pecas fabricadas por homens classe B: %f", media);
+    printf("\n Porcentagem de peças fabricadas na classe A por mulheres: %f", pct_peca);
+   
+
+
+    return 0;
+}
+
+---------------------------------------------------------------------------------------------
+
+#include<stdio.h>
+#include<math.h>
+
+int main(){
+    
+int n, i, k, j, menor_imp, qmenor, qigual, qmaior, maior, soma;
+int v[100];
+float pcme, pcig, pcma, media;
+
+k = 0; menor_imp = 0; qmenor = 0; qigual = 0; qmaior =0; maior = 0; j = 0; soma = 0;
+media = 0;
+    printf("\n Digite o numero de elementos do vetor: ");
+    scanf("%d",& n);
+    
+    for(i = 0; i < n; i++){
+        printf("\n %d = ", i + 1);
+        scanf("%d",& v[i]);
+    }
+    
+    //---a)menor impar-------------------------------------
+    for(i = 0; i < n; i++){
+        if(v[i] % 2 != 0){
+            if(k == 0){
+                menor_imp = v[i];
+                k = 1;
+            }else if(menor_imp > v[i]){
+                menor_imp = v[i];
+            }
+        }
+    }
+    
+    //---b)porcentagem > 10, < 10 e = 10--------------------
+    
+    for(i = 0; i < n; i++){
+        if(v[i] < 10){
+            qmenor++;
+        }else if(v[i] == 10){
+            qigual++;
+        }else{
+            qmaior++;
+        }
+    }
+    
+    
+    //---c)Segundo maior elemento do vetor------------------
+    for(i = 0; i < n; i++){
+        if(j == 0){
+            maior = v[i];
+            j = 1;
+        }else if(maior < v[i]){
+            maior = v[i];
+        } 
+    }
+    
+    //---d)Media geométrica dos elementos multiplos de 3 e 5---
+    
+    for(i = 0; i < n; i++){
+        if((v[i] % 3 == 0)&&(v[i] % 5 == 0)){
+            soma = soma + v[i];
+            media = pow(soma,1/n);
+        }
+    }
+    
+    //---e)Media ponderada usando como peso os indices----------
+    
+    
+    
+    
+    printf("\n Menor elemento impar: %d", menor_imp);
+    
+    pcme = (100 * qmenor) / n;
+    pcig = (100 * qigual) / n;
+    pcma = (100 * qmaior) / n;
+    
+    printf("\n Porcentagem de elementos  < 10: %f%%",pcme);
+    printf("\n Porcentagem de elementos  = 10: %f%%",pcig);
+    printf("\n Porcentagem de elementos  > 10: %f%%",pcma);
+    printf("\n Segundo maior elemento: %d",maior);
+    printf("\n Media geometrica de elementos multiplos de 3 e 5: %f",media);
+    printf("\n Media Ponderada: %f",mediap);
+    
+    return 0;
+}
+
+--------------------------------------------------------------------------------------
+#include<stdio.h>
+int main(){
+
+
+int i, j, c, l;
+int mat[100][100];
+int soma, produto;
+
+
+printf("Entre com o numero de linhas: ");
+scanf("%d",&l);
+printf("Entre com o numero de colunas: ");
+scanf("%d",&c);
+
+    for(i = 0; i < l; i++){
+        for(j = 0; j < c; j++){
+            printf("\n [%d][%d] = ", i, j);
+            scanf("%d",& mat[i][j]);
+        }
+    }
+    soma = 0;
+
+    for(i = 0; i < l; i++){
+        for(j = 0; j < c; j++){
+            soma = soma + mat[i][j];
+        }
+    }
+    printf("\n A soma dos elementos = %d", soma);
+
+    if(l == c){
+        produto = 1;
+        for(i =0; i < l; i++){
+            for(j = 0; j < c; j++){
+                if(i == j){
+                    produto = produto * mat[i][j];
+                }
+            }
+        }
+        printf("\n O produto diagonal primaria = %d", produto);
+    }else{
+     printf("\n Matriz nao e quadrada, portanto nao temos produto");
+    }
+    
+    if(l == c){
+        produto = 1;
+        for(i = 0; i < l; i++){
+            for(j = 0; j < c; j++){
+                if((i + j) == (l - 1)){
+                produto = produto * mat[i][j];
+                }
+            }
+        }
+        printf("\n O produto da diagonal secundaria = %d", produto);
+    }else{
+        printf("\n Matriz nao e quadrada, portanto nao temos produto");
+    }
+    
+ return 0;   
+}
+--------------------------------------------------------------------------------------
+#include<stdio.h>
+int main(){
+    
+int n, i, a, b, c, d;
+float sinal, s;
+
+    printf("\n Entre com o numero de termos: ");
+    scanf("%d",& n);
+    
+    i = 1; a = 16; b = 2; c = 3; d = 4;
+    
+    while(i < n){
+        
+        s = s + sinal * a/b;
+        
+        a = (c*c*c*c);
+        c = c++;
+        b = (b*d);
+        d = d + 2;
+        
+        if(i % 2 == 0){
+            sinal = -sinal;
+        }
+        
+        i++;
+    }
+    
+    printf("\n Soma de n termos: %f",s);
+}

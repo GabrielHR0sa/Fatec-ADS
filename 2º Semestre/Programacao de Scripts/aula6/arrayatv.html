@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Atividade 5</title>
+    <meta charset="UTF-8" />
+    <script type="text/javascript">
+        var repete = 's';
+        var contador = 0;
+
+        listaTarefa = [];
+        while (repete == 'S' || repete == 's') {
+            verifica = prompt('Digite uma tarefa:');
+            listaTarefa.push(verifica);
+
+            for (let i = 0; i < contador; i++) {
+                if (verifica == listaTarefa[i]) {
+                    alert('Tarefa Repetida');
+                    listaTarefa.pop();
+                    contador--;
+                } else {
+                    contador++;
+                }
+
+            }
+
+
+            contador++;
+            repete = prompt("Deseja informar outra tarefa? (S: Sim/ N: Não)");
+
+        }
+
+        var auxHtml = '';
+        for (let i = 0; i < listaTarefa.length; i++) {
+            auxHtml += ('<br>' + listaTarefa[i] + '</br>');
+
+        }
+        document.write(auxHtml);
+
+
+
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

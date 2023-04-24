@@ -1,0 +1,82 @@
+var ano_atual = 2022;
+var mes_atual = 4;
+var dia_atual = 10;
+
+var ano_nasc = 2001;
+var mes_nasc = 5;
+var dia_nasc = 3;
+
+const ano = 365;
+const mes = 30;
+
+if (ano_atual <= ano_nasc) {
+    console.log("A ano informado não pode ser menor ou igual ao ano de nascimento.");
+}
+else if(mes_atual > 12){
+    console.log("Mês inválido, o ano possui somente 12 meses.");
+}
+else if(mes_nasc > 12){
+    console.log("Mês inválido, o ano possui somente 12 meses.");
+}
+else if(dia_atual > 30){
+    console.log("Dia inválido, o mês possui somente 30 dias.");
+}
+else if(dia_nasc > 30){
+    console.log("Dia inválido, o mês possui somente 30 dias.");
+}
+//------------------------------------------------------------------------------------
+else if ((dia_atual == dia_nasc) && (mes_atual == mes_nasc)) {
+// Se dia e mes iguais, apenas calcular a idade e fazer * 365
+    var s1 = (ano_atual - ano_nasc) * ano;                                                  
+    console.log("Sua idade em dias é de: " + s1);
+}
+else if ((dia_atual == dia_nasc) && (mes_atual < mes_nasc)) {
+//Se dia =  e mes menor calcular o ano em dias - os meses em dias
+    var s10 = (mes_nasc - mes_atual) * mes;                                                  // meses em dias
+    var s11 = ((ano_atual - ano_nasc) * ano) - s10;                                         // idade em dias - a diferença dos meses em dias
+    console.log("Sua idade em dias é de: " + s11);
+}
+else if ((dia_atual == dia_nasc) && (mes_atual > mes_nasc)) {
+// Se dia = e mes maior somar idade em dias + os meses em dias
+    var s12 = (mes_atual - mes_nasc) * mes;
+    var s13 = ((ano_atual - ano_nasc) * ano) + s12;
+    console.log("Sua idade em dias é de: " + s13);
+}
+//------------------------------------------------------------------------------------
+else if ((dia_atual > dia_nasc) && (mes_atual > mes_nasc)) {
+// Se dia maior e mes maior somar a idade em dias mais (os meses em dias e os dias) a mais
+    var s2 = (mes_atual - mes_nasc) * mes;
+    var s3 = ((ano_atual - ano_nasc) * ano) + s2 + (dia_atual - dia_nasc);
+    console.log("Sua idade em dias é: " + s3);
+}
+else if ((dia_atual > dia_nasc) && (mes_atual < mes_nasc)) {
+// Se dia maior e mes menor subtrair da idade em dias os meses em dias, com a diferença do dia que não completou 1 mes
+    var s6 = (mes_nasc - mes_atual) * mes;                                              // diferença entre os meses em dias
+    var s7 = (s6 - dia_atual) + dia_nasc;                                               // mes em dias - os dias que se passaram = diferença para 1 mes + os dias que faltam do outro mes para chegar no aniversário                
+    var s8 = ((ano_atual - ano_nasc) * ano) - s7;                                       // idade em dias - a diferença dos dias
+    console.log("Sua idade em dias é de: " + s8);
+}
+else if ((dia_atual > dia_nasc) && (mes_atual == mes_nasc)) {
+//Se dia maior e mes igual, somar a idade em dias + os dias que passaram
+    var s9 = ((ano_atual - ano_nasc) * ano) + (dia_atual - dia_nasc);                   // idade em dias + a diferença de dias
+    console.log("Sua idade em dias é: " + s9);
+}
+//--------------------------------------------------------------------------------------
+else if ((dia_atual < dia_nasc) && (mes_atual < mes_nasc)) {
+// Se dia menor e mes menor subtrair da idade em dias, os meses em dias e os dias
+    var s4 = (mes_nasc - mes_atual) * mes;
+    var s5 = ((ano_atual - ano_nasc) * ano) - s4 - (dia_nasc - dia_atual);
+    console.log("Sua idade em dias é: " + s5);
+}
+else if ((dia_atual < dia_nasc) && (mes_atual == mes_nasc)) {
+// Se dia menor e mes igual subtrair a diferença dos dias
+    var s14 = ((ano_atual - ano_nasc) * ano) - (dia_nasc - dia_atual);
+    console.log("Sua idade em dias é de: " + s14);
+}
+else if ((dia_atual < dia_nasc) && (mes_atual > mes_nasc)) {
+// Se dia menor e mes maior somar idade em dias + a diferença do mes subtraindo os dias para completar 1 mes
+    var s15 = (mes_atual - mes_nasc) * mes;                                             // diferença do mes em dias
+    var s16 = s15 - (dia_nasc - dia_atual);                                             //mes em dias - a diferença de dias para 1 mes
+    var s17 = ((ano_atual - ano_nasc) * ano) + s16;                                     // idade em dias + os dias a mais que se passaram
+    console.log("Sua idade em dias é de: " + s17);
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 6</title>
+    <link rel="stylesheet" href="aula6.css">
+
+    <script type="text/javascript">
+        
+        
+
+        listaLivros = ['Arendendo JavaScript', 'Aprendendo HTML'];
+        listaLivros.push('Aprendendo CSS');
+        listaLivros.push('JavaScript Avançado');
+        listaLivros.push('Dominando Flutter');
+        listaLivros.push('Dominando C#', 'C# Avançado');// pode-se adicionar 2, separando-os por virgula
+        listaLivros[3] = 'Dominando JavaScript'; //alterando um valor
+        listaLivros[5] = 'Dominando PHP';
+        listaLivros.pop();//remover um elemento do meio;
+        listaLivros.splice(5,1); // remover varios elementos a partir do elemento definido no primeiro e o segundo represena quntos serão removidos após o elemento
+
+        var auxHtml = '';
+        for(let i =0; i < listaLivros.length; i++){
+            auxHtml += listaLivros[i] + '<br/>';
+        }
+        document.write(auxHtml);
+
+        /*for(item in document){
+            console.log(item);
+        }*/
+
+        linhas = [];
+        linhas.push(['1A','1B','1C']);
+        linhas.push(['2A','2B','2C']);
+        linhas.push(['3A','3B','3C']);
+
+        auxHtml = '<table border = "1">';
+        for( let linha = 0; linha < linhas.length; linha++){
+            auxHtml += '<tr>';
+            for( let coluna = 0; coluna < linhas[linha].length; coluna++){
+                auxHtml += '<td>' + linhas[linha][coluna] + '</td>';
+            }
+            auxHtml += '</tr>'; 
+        }
+        auxHtml += '</table>'
+        document.write(auxHtml);
+
+    </script>
+
+</head>
+<body>
+    
+    
+
+
+</body>
+</html>
