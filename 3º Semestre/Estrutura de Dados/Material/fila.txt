@@ -1,0 +1,18 @@
+fila - first in first out
+
+inicio aponta pro primeiro elemento
+primeiro elemento aponta para outro elemento
+proximo elemento (que chegou) aponta pra null
+
+não é obrigatório indicar o fim da fila. para verificar o fim, percorrer todos os elementos para achar
+o que aponta pra null
+
+para economizar processamento, indicar o ultimo elemento (ideal)
+
+inicio e fim da fila apontam pra null quando possui somente 1 elemento
+
+para listar a fila, o código é o mesmo da pilha
+começando do inicio e pulando pra aux até que seja null
+
+
+
