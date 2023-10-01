@@ -1,0 +1,190 @@
+SERVIDOR - CONFIGS
+
+Nome: Server
+Tipo: Microsoft Windows
+Versão: Windows 2019 (64)
+Memória: 4096 (4GB)
+Disco Virtual (VDI)
+Dinamicamente Alocado
+2 TB de Armazenamento
+
+CONFIGS DA IMAGEM
+Botão direito na imagem criada - Configurações - Geral - Avançado
+Area de transferência = bi-direcional
+Arrastar e soltar = bi-direcional
+
+Botão direito na imagem criada - Configurações - Sistema - Placa-mãe
+Ordem de Boot = Optico (sempre primeiro)
+
+Botão direito na imagem criada - Configurações - Sistema - Processador
+Processadores = 3 CPU
+
+Botão direito na imagem criada - Configurações - Monitor - Telas
+Aceleração 3D = ATIVAR
+
+Botão direito na imagem criada - Configurações - Armazenamento
+Controlador SATA -> server.vdi -> disco (vazio)
+Clicar no disco e selecionar a imagem ISO que queremos usar
+CRIAR UM OUTRO DISCO TAMBÉM CLICANDO COM O BOTÃO DIREITO NO CONTROLADOR SATA (SETOR DE CONFIGS DA IMAGEM)
+
+Botão direito na imagem criada - Configurações - Rede
+Adaptador 1 -> Conectado a: REDE INTERNA -> Nome: INTNET
+
+CLICLAR EM "OK" -> INICIAR A MÁQUINA
+
+APÓS A MÁQUINA INICIAR
+Teclado: Pt-br ABNT 2
+Versão da instalação: STANDART (EXPERIÊNCIA COM O COMPUTADOR)
+Tipo de instalação: PERSONALIZADA
+
+PARTICIONAR O HD
+Criar uma segunda partição (500GB)
+Criar a outra partição para o sistema (O RESTANTE DE MEMÓRIA)
+
+INSTALAR O WINDOWS NA MENOR PARTIÇÃO (500GB)
+
+User: Administrador
+Password: Servidor@2023
+CTRL (DIREITO - PERTO DAS SETAS) + DELETE
+
+FORMATAR VOLUMES DO DISCO (SERVIÇOS DE ARQUIVO)
+
+REDE
+Clicar com o botão direito no icone da internet na barra de tarefas
+Abrir as configurações
+Alterar configs/opções de adaptador
+Desabilitar IPV6
+Clicar 2x no IPV4
+IP e DNS primário=10.10.10.1
+Mascara: 255.255.255.0
+
+CONFIGURAÇÃO DO SERVIDOR LOCAL (FAZER ISSO ANTES DE PROMOVER A DOMINIO DNS)
+Alterar o nome: clicar no nome da máquina, clicar em alterar e colocar o nome como "SantoServer"
+1. Ir em Configs
+2. Sistema
+3. Sobre
+4. Renomear máquina
+
+INSTALANDO AD
+- TECLA WIN (GERENCIADOR DE SERVIDORES)
+- Ir no assistente de adição de funções e recursos (ADICIONAR FUNÇÕES E RECURSOS - OPÇÃO 2 DO MENU DE CONFIG)
+- Ele vai abrir uma tela com várias opções (Antes de começar, tipos de instalação etc), vai na Opção "FUNÇÕES DO SERVIDOR"
+- Selecione "Serviços de Dominio AD" e vai dando "PRÓXIMO"
+- Assim que chegarmos na aba de "CONFIRMAÇÃO" basta clicar em INSTALAR e espere instalar
+
+CRIANDO DNS 
+- Ir no assistente de adição de funções e recursos (ADICIONAR FUNÇÕES E RECURSOS - OPÇÃO 2 DO MENU DE CONFIG) 
+- Ele vai abrir uma tela com várias opções (Antes de começar, tipos de instalação etc), vai na Opção "FUNÇÕES DO SERVIDOR"
+- Selecione "Servidor DNS" e vai dando "PRÓXIMO"
+
+PROMOVENDO MÁQUINA A CONTROLADOR
+- Clicar na BANDEIRA COM SINAL DE AVISO e clique na opção PROMOVER ESTE SERVIDOR A CONTROLADOR DE DOMINIO
+- Vai abrir uma tela na opção de CONFIGURAÇÃO DE IMPLEMENTAÇÃO
+- Clique na opção ADCIONAR UMA NOVA FLORESTA 
+- Nome da arvore "Santo.local" e a senha é Servidor@2023
+- Clicar em próximo e vai até OPÇÕES ADICIONAIS e no NetBIOS é "SANTO" ou o que ele completar automaticamente
+- Continue clicando em próximo
+- Em "VERIFICAÇÃO DE PRE REQUISITOS" clicar em "INSTALAR" e ele vai para "INSTALAÇÃO"
+- Ele vai reiniciar sozinho
+- Ele vai aparecer para Logar e basta colocar a senha Servidor@2023
+
+===============================================
+===============================================
+===============================================
+===============================================
+===============================================
+
+SERVIDOR - USUÁRIOS E GRUPOS
+
+SNAPSHOTS
+3 pontinhos do lado da maquina criada - criar a snapshot
+
+MAIS OPÇÕES DE SOFTWARE
+- Clicar na aba de "dispositivos" na janela do VIRTUAL BOX 
+- Escolher a opção "Enserir imagem de CD dos Adicionais..."
+
+USUÁRIOS E GRUPOS
+- Tecla SUPER (WINDOWS) 
+- Digitar "Outros Usuários"
+OU
+- WIN + R (control userpasswords2)
+- Clicar no topo em "AVANÇADO" na janela de CONTAS DE USUÁRIO
+- Clicar em "AVANÇADO" na parte de GERENCIAMENTO AVANÇADO DE USUÁRIOS
+- Clicar na pasta "GRUPOS" que aparecer na outra janela (USUÁRIO E GRUPOS LOCAIS)
+- Botão direito na pasta e clicar em "NOVO GRUPO"
+- Depois clique na pasta de "USUÁRIOS" e clique com o botão direito e vá em "NOVO USUÁRIO"
+- Colocar a senha como Servidor@2023, desativar a mudança de senha no primeiro login e colocar que a senha nunca expira
+
+PASTAS COMPARTILHADAS
+- Vá no gerenciador de arquivos, ESTE COMPUTADOR e no disco de DADOS
+- Criar as pastas com os nomes dos grupos ADMINISTRATIVO, PRODUCAO, DIRETORIA e uma a mais chamada PUBLICA
+
+ADICIONANDO USUÁRIOS AOS GRUPOS
+- WIN + R (control userpasswords2)
+- Clicar no topo em "AVANÇADO" na janela de CONTAS DE USUÁRIO
+- Clicar em "AVANÇADO" na parte de GERENCIAMENTO AVANÇADO DE USUÁRIOS
+- Clicar na pasta GRUPOS e procurar o grupo que iremos adicionar os usuários
+- Clicar 2x no grupo selecionado
+- Clicar em ADICIONAR
+- Colocar o NOME dos usuários
+
+CRIANDO UNIDADES ORGANIZACIONAIS (MESMO LUGAR QUE CRIA OS USUÁRIO E GRUPOS)
+- Ir no menu INICIAR e pesquisar por USUÁRIOS
+- Ir no Santo.local e clicar com o botão direito, clicar em NOVO e criar as UNIDADES ORGANIZACIONAIS (Administrativo, diretoria e produção)
+- Clicar em USERS
+- Arrastar os USUÁRIOS e GRUPOS CRIADOS para cada UNIDADE ORGANIZACIONAL
+
+ADICIONANDO GRUPOS AS PASTAS COMPARTILHADAS
+- Vai no C: e criar uma pasta chamada "COMPARTILHADA" e dentro dela criar cada pasta que será compartilhada com base nas regras de grupos e usuários
+- Clica na pasta com o botão direito e vai em PROPRIEDADES
+- Vai em COMPARTILHAMENTO
+- Depois vai em "COMPARTILHAR"
+- E adiciona os grupos digitando o nome do grupo 
+- Selecionar quais as configs de acesso (colocando se o grupo/usuário pode ler e gravar ou só ler)
+
+- Voce pode adicionar um usuário chamado "TODOS" na pasta
+- Colocando esse user todos os usuários do AD tem direito a ler e gravar na pasta
+
+===============================================
+===============================================
+===============================================
+===============================================
+===============================================
+
+CLIENTE - CONFIGS
+
+PRIMEIRA COISA A FAZER ANTES DE ADICIONAR AO DOMINIO
+RENOMEANDO NOME DA MAQUINA
+1. Ir em Configs (Clicar na bandeira do Win e clicar em Configs)
+2. Sistema
+3. Sobre
+4. Informações do Sistema
+5. Alterar configurações
+6. Colocar o nome do que deseja
+7. ESPERA A MÁQUINA REINICIAR
+
+CONFIGURAR A REDE, IP ETC
+- Clique na opção de "DISPOSITIVOS" na aba do Virtual Box 
+- Vá em REDE e depois em CONFIGURAÇÕES DE REDE
+- Mude de NAT para REDE INTERNA
+- Mudar as configs de IP do pc do Cliente
+	- Desabilitar IPV6
+	- IPV4
+
+DOMINIO
+1. Ir em Configs (Clicar na bandeira do Win e clicar em Configs)
+2. Sistema
+3. Sobre
+4. Informações do Sistema
+5. Alterar configurações
+6. Adicionar um novo DOMINIO (oq criamos)
+7. Colocar o nome do ADM do servidor e a SENHA
+
+ACESSANDO AS PASTAS NO SERVIDOR POR MEIO DO CLIENTE
+- \\nome-do-servidor ou \\ip (servidor)
+
+===============================================
+===============================================
+===============================================
+===============================================
+===============================================
